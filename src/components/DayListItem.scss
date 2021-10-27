@@ -2,7 +2,6 @@
 @import "styles/variables.scss";
 
 .day-list {
-    //color:tomato;
   &__item {
     @include fade;
 
@@ -33,9 +32,3 @@
     }
   }
 }
-
-// .day-list__item{
-//     background-color: #ee5253;
-//     cursor: pointer;
-//     color: $dark-background;
-// }
