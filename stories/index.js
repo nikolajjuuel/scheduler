@@ -8,6 +8,7 @@ import "index.scss";
 import Button from "components/Button";
 import DayListItem from "components/DayListItem";
 import DayList from "components/DayList";
+import InterviewerListItem from "components/InterviewerListItem"
 
 storiesOf("Button", module)
   .addParameters({
@@ -31,7 +32,7 @@ storiesOf("DayListItem", module)
   })
   .add("Unselected", () => <DayListItem name="Monday" spots={5} />)
   .add("Selected", () => <DayListItem name="Monday" spots={5} selected />)
-  .add("Full", () => <DayListItem name="Monday" spots={0}/>)
+  .add("Full", () => <DayListItem name="Monday" spots={0} />)
   .add("Clickable", () => (
     <DayListItem name="Tuesday" setDay={action("setDay")} spots={5} />
   ));
@@ -66,4 +67,14 @@ storiesOf("DayList", module)
   ))
   .add("Wednesday", () => (
     <DayList days={days} day={"Wednesday"} setDay={action("setDay")} />
+  ));
+
+storiesOf("InterviewerListItem", module)
+  .addParameters({
+    backgrounds: [{ name: "dark", value: "#222f3e", default: true }]
+  })
+  .add("Unselected", () => <InterviewerListItem name="Monday"  />)
+  .add("Selected", () => <InterviewerListItem name="Monday"  selected />)
+  .add("Clickable", () => (
+    <InterviewerListItem name="Tuesday" setInterview={action("setInterview")} />
   ));
