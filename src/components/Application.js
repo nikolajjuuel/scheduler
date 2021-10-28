@@ -39,8 +39,8 @@ export default function Application(props) {
         <hr className="sidebar__separator sidebar--centered" />
         <DayList
           days={days}
-          day={"Monday"}
-          setDay={day => console.log(day)}
+          value={day}
+          onChange={setDay}
         />
 
 
