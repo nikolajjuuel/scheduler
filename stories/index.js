@@ -17,6 +17,7 @@ import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
 import Confirm from "components/Appointment/Confirm";
 import Status from "components/Appointment/Status";
+import Error from "components/Appointment/Error"
 
 
 storiesOf("Button", module)
@@ -152,6 +153,7 @@ storiesOf("InterviewerList", module)
   .add("Header", () => <Header time="12pm" />)
   .add("Empty", () => <Empty onAdd={action("onAdd")}/>)
   .add("Show", () => <Show onEdit={action("onEdit")} onDelete={action("onDelete")}  />)
-  .add("Confirm", () => <Confirm onCancel={action("onCancel")} onConfirm={action("Confirm")} />)
+  .add("Confirm", () => <Confirm onCancel={action("onCancel")} onConfirm={action("onConfirm")} />)
   .add("Status", () => <Status message={"Deleting"} />)
+  .add("Error", () => <Error messaage={"Could not delete appointment."} onClose={action("onClose")} />)
   ;
