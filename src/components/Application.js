@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 
 import "components/Application.scss";
-//import Button from "./Button";
-//import DayListItem from "./DayListItem";
 import DayList from "./DayList";
+import Appointment from "./Appointment";
 
 
 export default function Application(props) {
@@ -27,6 +26,56 @@ export default function Application(props) {
       spots: 0,
     },
   ];
+
+  const appointments = [
+    {
+      id: 1,
+      time: "12pm",
+    },
+    {
+      id: 2,
+      time: "1pm",
+      interview: {
+        student: "Lydia Miller-Jones",
+        interviewer: {
+          id: 3,
+          name: "Sylvia Palmer",
+          avatar: "https://i.imgur.com/LpaY82x.png",
+        }
+      }
+    },
+    {
+      id: 3,
+      time: "2pm",
+    },
+    {
+      id: 4,
+      time: "3pm",
+      interview: {
+        student: "Archie Andrews",
+        interviewer: {
+          id: 4,
+          name: "Cohana Roy",
+          avatar: "https://i.imgur.com/FK8V841.jpg",
+        }
+      }
+    },
+    {
+      id: 5,
+      time: "4pm",
+    }
+  ];
+
+  const appointment = appointments.map((item) =>
+    <Appointment
+      id={item.id}
+      time={item.time}
+      {...item}
+    />
+  )
+
+  console.log(appointment);
+
   return (
     <main className="layout">
       <section className="sidebar">
@@ -52,17 +101,12 @@ export default function Application(props) {
           alt="Lighthouse Labs"
         />
 
-        {/* <Button children='Base' />
-        <Button confirm children='Confirm' />
-        <Button danger children='Danger' />
-        <Button disabled children='Disabled' />
-        <Button clickable children='Clickable' /> */}
       </section>
       <section className="schedule">
 
         {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
 
-
+        {appointment}
 
       </section>
     </main>
