@@ -16,6 +16,7 @@ import Header from "components/Appointment/Header";
 import Empty from "components/Appointment/Empty";
 import Show from "components/Appointment/Show";
 import Confirm from "components/Appointment/Confirm";
+import Status from "components/Appointment/Status";
 
 
 storiesOf("Button", module)
@@ -152,4 +153,5 @@ storiesOf("InterviewerList", module)
   .add("Empty", () => <Empty onAdd={action("onAdd")}/>)
   .add("Show", () => <Show onEdit={action("onEdit")} onDelete={action("onDelete")}  />)
   .add("Confirm", () => <Confirm onCancel={action("onCancel")} onConfirm={action("Confirm")} />)
+  .add("Status", () => <Status message={"Deleting"} />)
   ;
