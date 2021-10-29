@@ -13,7 +13,8 @@ function selectUserByName(state, name) {
 
 
 const getAppointmentsForDay = (state, day) => {
-    const stateday = state.days
+    const stateday = state.days.filter(days => days.name === name)
+    return stateday;
 }
 
 
