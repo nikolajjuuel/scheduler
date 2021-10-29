@@ -1,9 +1,6 @@
 import React from "react";
-import Appointment from "components/Appointment";
-import "components/Appointment/styles.scss";
 
 export default function error(props) {
-
     return (
         <main className="appointment__card appointment__card--error">
             <section className="appointment__error-message">

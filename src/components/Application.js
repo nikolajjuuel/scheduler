@@ -66,15 +66,8 @@ export default function Application(props) {
     }
   ];
 
-  const appointment = appointments.map((item) =>
-    <Appointment
-      id={item.id}
-      time={item.time}
-      {...item}
-    />
-  )
 
-  console.log(appointment);
+
 
   return (
     <main className="layout">
@@ -105,8 +98,19 @@ export default function Application(props) {
       <section className="schedule">
 
         {/* Replace this with the schedule elements durint the "The Scheduler" activity. */}
+        {appointments.map((item) => {
+          console.log(item);
+          return (
+            <Appointment
+              key={item.id}
+              {...item}
+            />
+          )
+        }
 
-        {appointment}
+        )}
+
+
 
       </section>
     </main>

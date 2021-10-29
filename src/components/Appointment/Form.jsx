@@ -1,16 +1,12 @@
 //import React from "react";
-import Appointment from "components/Appointment";
 import InterviewerList from "components/InterviewerList";
 import Button from "components/Button";
-import "components/Appointment/styles.scss";
 import React, { useState } from 'react';
 
 
 const Form = function (props) {
-
     const [student, setStudent] = useState(props.student || "");
     const [interviewer, setInterviewer] = useState(props.interviewer || null);
-
     const reset = () => {
         setStudent('');
         setInterviewer('');
@@ -31,14 +27,13 @@ const Form = function (props) {
                         placeholder="Enter Student Name"
                         value={student}
                         onChange={(event) => setStudent(event.target.value, reset())}
-                    /*
-                      This must be a controlled component
-                      your code goes here
-                    */
+
                     />
                 </form>
                 <InterviewerList
-                /* your code goes here */
+                    onChange={setInterviewer}
+                    interviewers={props.interviewers}
+                    value={interviewer}
                 />
             </section>
             <section className="appointment__card-right">

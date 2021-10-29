@@ -5,14 +5,16 @@ import Empty from "./Empty";
 
 import "components/Appointment/styles.scss";
 
-export default function Appointment(props) {
-    let showProps = {}
+const Appointment= function (props) {
+
 
     return (
         <article className="appointment">
             <Header time={props.time} />
-            {props.interview ? <Show {...showProps} /> : <Empty />}
+            {props.interview && <Show student={props.interview.student} interviewer={props.interview.interviewer.name} /> }
+            {!props.interview && <Empty />}
         </article>
     );
 }
 
+export default Appointment; 

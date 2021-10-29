@@ -1,10 +1,12 @@
 import React from "react";
-import Appointment from "components/Appointment";
 import "components/Appointment/styles.scss";
 
-const Show = function(props) {
+const Show = function (props) {
 
 
+
+
+    console.log('PROPS', props);
     return (
         <main className="appointment__card appointment__card--show">
             <section className="appointment__card-left">
@@ -31,6 +33,7 @@ const Show = function(props) {
                 </section>
             </section>
         </main>
+
     );
 }
 
