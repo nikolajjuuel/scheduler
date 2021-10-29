@@ -1,23 +1,18 @@
-function selectUserByName(state, name) {
-    const filteredNames = state.users.filter(user => user.name === name);
-    return filteredNames;
-  }
+export function getAppointmentsForDay(state, day) {
+    const allAppointments = []
+    const days = state.days.filter(info => info.name === day);
 
+    if (days.length === 0) {
+        return [];
+    }
 
+    const appointments = days[0].appointments;
+    for (let i = 0; i < appointments.length; i++) {
+        allAppointments.push(state.appointments[appointments[i]]);
+    }
 
-
-
-
-
-
-
-
-const getAppointmentsForDay = (state, day) => {
-    const stateday = state.days.filter(days => days.name === name)
-    return stateday;
+    return allAppointments;
 }
 
 
-const [day, setDay] = useState([])
-
-
+export default getAppointmentsForDay;
