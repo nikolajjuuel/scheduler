@@ -2,11 +2,6 @@ import React from "react";
 import "components/Appointment/styles.scss";
 
 const Show = function (props) {
-
-
-
-
-    console.log('PROPS', props);
     return (
         <main className="appointment__card appointment__card--show">
             <section className="appointment__card-left">

@@ -1,6 +1,4 @@
 import React from "react";
-import Appointment from "components/Appointment";
-
 export default function Header(props) {
 
     return (
