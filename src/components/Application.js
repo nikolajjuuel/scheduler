@@ -13,8 +13,8 @@ export default function Application(props) {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
-    // you may put the line below, but will have to remove/comment hardcoded appointments variable
-    appointments: {}
+    appointments: {},
+    interviewers: {}
   });
 
   const dailyAppointments = getAppointmentsForDay(state, state.day);
@@ -35,9 +35,10 @@ const baseURL = 'http://localhost:8001/api';
 
 
   useEffect(() => {
-    const daysPromise = axios.get(`${baseURL}/days`);
-    const appointmentsPromise = axios.get(`${baseURL}/appointments`);
-    const interviewersPromise = axios.get(`${baseURL}/interviewers`);;
+    const daysPromise = axios.get(`/api/days`);
+    const appointmentsPromise = axios.get(`/api/appointments`);
+    const interviewersPromise = axios.get(`/api/interviewers`);
+
 
     const promises = [daysPromise, appointmentsPromise, interviewersPromise];
 
