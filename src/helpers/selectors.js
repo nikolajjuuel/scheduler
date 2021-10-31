@@ -15,4 +15,15 @@ export function getAppointmentsForDay(state, day) {
 }
 
 
-export default getAppointmentsForDay;
+export function getInterview(state, interview) {
+    if (interview === null){
+        return null;
+        }
+        
+    interview.interviewer = state.interviewers[interview.interviewer];
+    return interview;
+}
+
+
+
+export default { getAppointmentsForDay, getInterview }
