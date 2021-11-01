@@ -2,7 +2,7 @@ export function getAppointmentsForDay(state, day) {
     const allAppointments = []
     const days = state.days.filter(info => info.name === day);
 
-    if (days.length === 0) {
+    if (days.length < 1) {
         return [];
     }
 
@@ -16,29 +16,29 @@ export function getAppointmentsForDay(state, day) {
 
 
 export function getInterview(state, interview) {
-    if (interview === null){
+    if (interview === null) {
         return null;
-        }
-        
-    interview.interviewer = state.interviewers[interview.interviewer];
+    }
+
+    interview.interviewer = {...state.interviewers[interview.interviewer]};
     return interview;
 }
 
 
 export function getInterviewersForDay(state, day) {
-    const allAppointments = []
+    const allInterviewers = []
     const days = state.days.filter(info => info.name === day);
 
-    if (days.length === 0) {
+    if (days.length < 1) {
         return [];
     }
 
     const appointments = days[0].appointments;
     for (let i = 0; i < appointments.length; i++) {
-        allAppointments.push(state.appointments[appointments[i]]);
+        allInterviewers.push(state.appointments[appointments[i]]);
     }
 
-    return allAppointments;
+    return allInterviewers;
 }
 
 
