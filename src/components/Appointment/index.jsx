@@ -11,24 +11,31 @@ import Form from "./Form";
 const EMPTY = "EMPTY";
 const SHOW = "SHOW";
 const CREATE = "CREATE"
-const SAVING = "SAVING"
 
 
 
 const Appointment = function (props) {
-    const {id, bookInterview, interview} = props
+    const {id, interviewers} = props
+
+    console.log('apt', props)
 
     const { mode, transition, back } = useVisualMode(
-        interview ? SHOW : EMPTY
+        props.interview ? SHOW : EMPTY
     );
 
     const save = (name, interviewer) => {
+//        event.preventDefault()
+
         const interview = {
           student: name,
           interviewer
         }
-        bookInterview(id, interview);
+        // console.log('bookId' ,id)
+        // console.log('interviewId' ,interview)
 
+        props.bookInterview(id, interview) 
+        .then(() => transition(SHOW))
+        
       }
 
 
@@ -40,7 +47,7 @@ const Appointment = function (props) {
             <Header time={props.time} />
             {mode === SHOW && <Show student={props.interview.student} interviewer={props.interview.interviewer.name} />}
             {mode === EMPTY && <Empty onAdd={() => { transition(CREATE) }} />}
-            {mode === CREATE && <Form onCancel={() => { back() }} onSave={save} />}
+            {mode === CREATE && <Form  onCancel={ back}  onSave={ save} />}
         </article>
     );
 }
