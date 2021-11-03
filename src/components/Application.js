@@ -41,15 +41,14 @@ export default function Application(props) {
 
 
   const bookInterview = function (id, interview) {
-
     return axios.put(`/api/appointments/${id}`, { interview })
-      .then((res) => {
+      .then(() => {
         const appointment = {
           ...state.appointments[id],
           interview: { ...interview }
         };
 
-        setState(prev =>
+        setState(() =>
         ({
           ...state,
           appointments: {
@@ -60,63 +59,110 @@ export default function Application(props) {
       }).catch((err) => console.log(err));
   }
 
-  console.log(state, "updated state");
+  const cancelInterview = (id, interview) =>{
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    return axios.delete(`/api/appointments/${id}`, {interview}) 
+      .then((res) => {
+        const days = updateSpots(state, appointments)
+        setState({
+        ...state,
+        days,
+        appointments
+      });
+    })
+  }
+
+  const updateSpots = function (state, appointments, id){
+
+    const day = state.days.find(d => d.name === state.day);
+
+    
+    let spots = 0;
+    
+    for (const id of day.appointments){
+      const appointment = appointments[id];
+
+      if(!appointment.interview){
+        spots++;
+      }
 
 
 
-  return (
-    <main className="layout">
-      <section className="sidebar">
-        <img
-          className="sidebar--centered"
-          src="images/logo.png"
-          alt="Interview Scheduler"
-        />
+    }
+    
+    const newDay = {...day, spots};
 
-        <hr className="sidebar__separator sidebar--centered" />
-        <DayList
-          days={state.days}
-          value={state.day}
-          onChange={setDay}
-        />
+    const newNewDays = state.days.map((d) => d.name === state.day ? newDay: d)
 
-        <nav className="sidebar__menu"></nav>
 
-        <img
-          className="sidebar__lhl sidebar--centered"
-          src="images/lhl.png"
-          alt="Lighthouse Labs"
-        />
+    return newNewDays;
+  }
 
-      </section>
-      <section className="schedule">
-        {dailyAppointments.map(appointment => {
-          const interview = getInterview(state, appointment.interview);
 
-          const appointmentProps = {
-            appointment,
-            interview,
-            dailyInterviews,
-            bookInterview
 
+    return (
+      <main className="layout">
+        <section className="sidebar">
+          <img
+            className="sidebar--centered"
+            src="images/logo.png"
+            alt="Interview Scheduler"
+          />
+
+          <hr className="sidebar__separator sidebar--centered" />
+          <DayList
+            days={state.days}
+            value={state.day}
+            onChange={setDay}
+          />
+
+          <nav className="sidebar__menu"></nav>
+
+          <img
+            className="sidebar__lhl sidebar--centered"
+            src="images/lhl.png"
+            alt="Lighthouse Labs"
+          />
+
+        </section>
+        <section className="schedule">
+          {dailyAppointments.map(appointment => {
+            const interview = getInterview(state, appointment.interview);
+
+            const appointmentProps = {
+              appointment,
+              interview,
+              dailyInterviews,
+              bookInterview,
+              cancelInterview
+
+            }
+
+            return (
+              <Appointment
+                key={appointment.id}
+                id={appointment.id}
+                {...appointmentProps}
+
+
+              />
+            )
           }
 
-          return (
-            <Appointment
-              key={appointment.id}
-              id={appointment.id}
-              {...appointmentProps}
-
-
-            />
-          )
-        }
-
-        )}
+          )}
 
 
 
-      </section>
-    </main>
-  );
-}
+        </section>
+      </main>
+    );
+  }
