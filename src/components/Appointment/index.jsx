@@ -19,6 +19,7 @@ const DELETING = "DELETING";
 const CONFIRMING = "CONFIRMING";
 const EDIT = "EDIT";
 const ERROR_SAVE = "ERROR SAVE";
+const ERROR_DELETE = "ERROR DELETE";
 
 
 
@@ -41,8 +42,8 @@ const Appointment = function (props) {
         transition(SAVING);
         props.bookInterview(id, interview)
             .then(() => transition(SHOW))
-            .catch(()=> {
-                transition(ERROR_SAVE)
+            .catch(()=> { //cannot read undefined
+                transition(ERROR_SAVE, true)
             })
     }
 
@@ -51,7 +52,9 @@ const Appointment = function (props) {
         props.cancelInterview(id)
             .then(() => {
                 transition(EMPTY);
-
+            })
+            .catch(()=>{
+                transition(ERROR_DELETE, true)
             })
     }
 
@@ -71,7 +74,8 @@ const Appointment = function (props) {
             {mode === DELETING && <Status message="Deleting" />}
             {mode === CONFIRMING && <Confirm onConfirm={deleteInterview} onCancel={back}/>}
             {mode === EDIT && <Form interviewers={interviewers} onCancel={()=> back()} onSave={save} student={props.interview.student} interviewer={props.interview.interviewer}/>}
-            {mode === ERROR_SAVE && <Status message="Deleting" />}
+            {mode === ERROR_SAVE && <Error message="Could not save appointment." onClose={back} />}
+            {mode === ERROR_DELETE && <Error message="Could not save appointment." onClose={back} />}
 
 
         </article>
