@@ -22,13 +22,10 @@ const ERROR_SAVE = "ERROR SAVE";
 const ERROR_DELETE = "ERROR DELETE";
 
 
-
-
-
 const Appointment = function (props) {
-    const { id, interviewers } = props
-
-    console.log('apt', props)
+    const { id, interviewers, time } = props
+    console.log('appointment', props);
+    console.log('time', time)
 
     const { mode, transition, back } = useVisualMode(
         props.interview ? SHOW : EMPTY
@@ -64,7 +61,7 @@ const Appointment = function (props) {
     return (
         <article className="appointment">
 
-            <Header time={props.time} />
+            <Header time={time} />
             {mode === SHOW && <Show student={props.interview.student} interviewer={props.interview.interviewer.name} 
             onDelete={()=> transition(CONFIRMING)}
             onEdit={()=> transition(EDIT)} />}

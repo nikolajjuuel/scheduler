@@ -2,10 +2,11 @@ import React from "react";
 import "components/Appointment/styles.scss";
 
 const Show = function (props) {
+    console.log('show', props);
     return (
         <main className="appointment__card appointment__card--show">
             <section className="appointment__card-left">
-                <h2 className="text--regular">{props.student}</h2>
+                <h2 className="text--regular">{props.student.name}</h2>
                 <section className="interviewer">
                     <h4 className="text--light">Interviewer</h4>
                     <h3 className="text--regular">{props.interviewer}</h3>

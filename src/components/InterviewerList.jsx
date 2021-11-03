@@ -1,6 +1,8 @@
 import React from "react";
 import InterviewerListItem from "./InterviewerListItem";
 import "components/InterviewerList.scss";
+import PropTypes from 'prop-types';
+
 
 const interviewers = [
     { id: 1, name: "Sylvia Palmer", avatar: "https://i.imgur.com/LpaY82x.png" },
@@ -30,3 +32,7 @@ export default function InterviewerList(props) {
         </section>
     );
 }
+
+InterviewerList.propTypes = {
+    interviewers: PropTypes.array.isRequired
+  };
