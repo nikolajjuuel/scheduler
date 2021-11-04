@@ -10,7 +10,7 @@ const Form = function (props) {
     const [interviewer, setInterviewer] = useState(props.interviewer || null);
     const reset = () => {
         setStudent('');
-        setInterviewer('');
+        setInterviewer(null);
     }
 
     const cancel = () => {
@@ -24,6 +24,8 @@ const Form = function (props) {
             setError("Student name cannot be blank");
             return;
         }
+
+        setError("");
 
         props.onSave(student, interviewer);
     }
