@@ -23,7 +23,7 @@ const ERROR_DELETE = "ERROR DELETE";
 
 
 const Appointment = function (props) {
-    const { id } = props
+    const { id, appointment,  time } = props
     console.log('appointment', props);
 
     const { mode, transition, back } = useVisualMode(
@@ -60,7 +60,7 @@ const Appointment = function (props) {
     return (
         <article className="appointment">
 
-            <Header time={props.time} />
+            <Header time={appointment.time} />
             {mode === SHOW && <Show student={props.interview.student} interviewer={props.interview.interviewer.name} 
             onDelete={()=> transition(CONFIRMING)}
             onEdit={()=> transition(EDIT)} />}
