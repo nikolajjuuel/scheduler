@@ -1,22 +1,27 @@
 import React, { useState, useEffect } from "react";
 const axios = require('axios').default;
 
+//sets states on render
 export default function useApplicationData() {
   const [state, setState] = useState({
     day: "Monday",
     days: [],
     appointments: {},
-    interviewers: {}
+    interviewers: [],
   });
+
+  console.log(state);
+
   const setDay = day => setState({ ...state, day });
 
+
+  //fetching data from API end points
   useEffect(() => {
     const daysPromise = axios.get(`/api/days`);
     const appointmentsPromise = axios.get(`/api/appointments`);
     const interviewersPromise = axios.get(`/api/interviewers`);
 
     const promises = [daysPromise, appointmentsPromise, interviewersPromise];
-
     Promise.all(promises)
       .then((response) => {
         const days = response[0].data;
@@ -41,8 +46,10 @@ export default function useApplicationData() {
 
     return axios.put(`/api/appointments/${id}`, { interview })
       .then(() => {
+
         const days = updateSpots(state, appointments)
 
+        //keeps existing interview data and adds new appointment
         setState(() =>
         ({
           ...state,
@@ -67,18 +74,20 @@ export default function useApplicationData() {
     };
 
     return axios.delete(`/api/appointments/${id}`, { interview })
-      .then((res) => {
-        const days = updateSpots(state, appointments)
+      .then(() => {
+        const days = updateSpots(state, appointments);
         setState({
           ...state,
           days,
-          appointments
+          appointments,
         });
       })
   }
 
+  //changes spots remaing on Days sidebar
   const updateSpots = function (state, appointments, id) {
     const day = state.days.find(d => d.name === state.day);
+
     let spots = 0;
 
     for (const id of day.appointments) {
@@ -97,11 +106,7 @@ export default function useApplicationData() {
   return {
     state,
     setDay,
-    updateSpots,
     cancelInterview,
     bookInterview
   }
-
-
-
 }

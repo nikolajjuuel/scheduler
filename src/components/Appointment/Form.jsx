@@ -4,7 +4,6 @@ import Button from "components/Button";
 import React, { useState } from 'react';
 
 const Form = function (props) {
-    console.log('FORM', props)
     const [error, setError] = useState("");
 
     const [student, setStudent] = useState(props.student || "");
@@ -17,8 +16,6 @@ const Form = function (props) {
     const cancel = () => {
         reset();
     }
-
-
 
     function validate() {
         if (student === "") {

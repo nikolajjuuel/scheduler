@@ -7,8 +7,6 @@ export default function InterviewListItem(props) {
         "interviewers__item--selected": props.selected
     });
 
-    //console.log('interviewlistItemProps', props);
-
     return (
         <li onClick={ () => props.setInterviewer(props.value) }
             className="interviewers__item" className={interviewClass}>
@@ -18,7 +16,6 @@ export default function InterviewListItem(props) {
                 alt={props.name}
             />
             {props.selected && props.name}
-
         </li>
     );
 }

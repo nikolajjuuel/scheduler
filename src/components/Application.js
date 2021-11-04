@@ -6,18 +6,20 @@ import Appointment from "./Appointment";
 import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 import useApplicationData from "hooks/useApplicationData"
 
-export default function Application(props) {
+export default function Application() {
   const {
     state,
     setDay,
     bookInterview,
+    
     cancelInterview
   } = useApplicationData();
 
-  const dailyAppointments = getAppointmentsForDay(state, state.day);
-  const interview = getInterview(state, state.interviewers)
-  const dailyInterviews = getInterviewersForDay(state, state.day)
 
+  const dailyAppointments = getAppointmentsForDay(state, state.day);
+  const allInterviewers = getInterviewersForDay(state, state.day);
+
+console.log('state', state)
 
   return (
     <main className="layout">
@@ -51,7 +53,8 @@ export default function Application(props) {
           const appointmentProps = {
             appointment,
             interview,
-            dailyInterviews,
+            allInterviewers,
+          //  dailyInterviews,
             bookInterview,
             cancelInterview
 
