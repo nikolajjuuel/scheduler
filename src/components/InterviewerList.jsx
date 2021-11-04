@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 
 export default function InterviewerList(props) {
     const { interviewers, onChange, value } = props;
+
+    //itterates over interviewers to create indivudual interviwers whom can be clicked to select their value 
     const interviewerList = interviewers.map(interviewer =>
         <InterviewerListItem
             key={interviewer.id}
@@ -22,6 +24,6 @@ export default function InterviewerList(props) {
     );
 }
 
-InterviewerList.propTypes = {
-    interviewers: PropTypes.array.isRequired
-};
+// InterviewerList.propTypes = {
+//     interviewers: PropTypes.array.isRequired
+// };

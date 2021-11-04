@@ -9,7 +9,7 @@ afterEach(cleanup);
 describe("Form", () => {
 
     it("renders without crashing", () => {
-        render(<Form />);
+        render(<Form interviewers={interviewers} />);
     });
 
     const interviewers = [
