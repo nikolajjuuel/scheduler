@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import "components/Application.scss";
 import DayList from "./DayList";
@@ -11,15 +11,12 @@ export default function Application() {
     state,
     setDay,
     bookInterview,
-    
     cancelInterview
   } = useApplicationData();
 
-
+  //change API objects into arrays in order to itterate with filter and map
   const dailyAppointments = getAppointmentsForDay(state, state.day);
   const allInterviewers = getInterviewersForDay(state, state.day);
-
-console.log('state', state)
 
   return (
     <main className="layout">
@@ -31,6 +28,7 @@ console.log('state', state)
         />
 
         <hr className="sidebar__separator sidebar--centered" />
+
         <DayList
           days={state.days}
           value={state.day}
@@ -44,9 +42,10 @@ console.log('state', state)
           src="images/lhl.png"
           alt="Lighthouse Labs"
         />
-
       </section>
+
       <section className="schedule">
+        {/* sends most updated state to the appointments with props */}
         {dailyAppointments.map(appointment => {
           const interview = getInterview(state, appointment.interview);
 
@@ -54,7 +53,6 @@ console.log('state', state)
             appointment,
             interview,
             allInterviewers,
-          //  dailyInterviews,
             bookInterview,
             cancelInterview
 

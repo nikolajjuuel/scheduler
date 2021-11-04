@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+//changes states depending on what the last state was
 const useVisualMode = function (initial) {
     const [history, setHistory] = useState([initial]);
     const transition = (newMode, replace) => {

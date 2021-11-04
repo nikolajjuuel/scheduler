@@ -3,6 +3,7 @@ import DayListItem from "./DayListItem";
 import "components/DayListItem.scss";
 
 export default function DayList(props) {
+    //itterates over the days to object to display weekdays
     const dayList = props.days.map((day) =>
         <DayListItem
             key={day.id}
