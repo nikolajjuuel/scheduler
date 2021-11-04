@@ -4,6 +4,8 @@ import Button from "components/Button";
 import React, { useState } from 'react';
 
 const Form = function (props) {
+    const [error, setError] = useState("");
+
     const [student, setStudent] = useState(props.student || "");
     const [interviewer, setInterviewer] = useState(props.interviewer || null);
     const reset = () => {
@@ -15,7 +17,14 @@ const Form = function (props) {
         reset();
     }
 
-    const validate = function(){
+
+
+    function validate() {
+        if (student === "") {
+            setError("Student name cannot be blank");
+            return;
+        }
+
         props.onSave(student, interviewer);
     }
 
@@ -34,8 +43,12 @@ const Form = function (props) {
                         placeholder="Enter Student Name"
                         value={student}
                         onChange={(event) => setStudent(event.target.value, cancel())}
+                        data-testid="student-name-input"
+
 
                     />
+                    <section className="appointment__validation">{error}</section>
+
                 </form>
                 <InterviewerList
                     onChange={setInterviewer}
