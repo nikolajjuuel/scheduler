@@ -4,6 +4,7 @@ import Button from "components/Button";
 import React, { useState } from 'react';
 
 const Form = function (props) {
+    console.log('FORM', props)
     const [error, setError] = useState("");
 
     const [student, setStudent] = useState(props.student || "");
@@ -29,10 +30,6 @@ const Form = function (props) {
 
         props.onSave(student, interviewer);
     }
-
-    // console.log('studenFORM',student);
-    // console.log('interviwerForm',interviewer);
-
 
     return (
         <main className="appointment__card appointment__card--create">

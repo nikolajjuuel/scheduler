@@ -23,7 +23,7 @@ const ERROR_DELETE = "ERROR DELETE";
 
 
 const Appointment = function (props) {
-    const { id, interviewers, time } = props
+    const { id } = props
     console.log('appointment', props);
 
     const { mode, transition, back } = useVisualMode(
@@ -60,7 +60,7 @@ const Appointment = function (props) {
     return (
         <article className="appointment">
 
-            <Header time={time} />
+            <Header time={props.time} />
             {mode === SHOW && <Show student={props.interview.student} interviewer={props.interview.interviewer.name} 
             onDelete={()=> transition(CONFIRMING)}
             onEdit={()=> transition(EDIT)} />}
@@ -69,7 +69,7 @@ const Appointment = function (props) {
             {mode === SAVING && <Status message="Saving" />}
             {mode === DELETING && <Status message="Deleting" />}
             {mode === CONFIRMING && <Confirm onConfirm={deleteInterview} onCancel={back}/>}
-            {mode === EDIT && <Form interviewers={interviewers} onCancel={()=> back()} onSave={save} student={props.interview.student} interviewer={props.interview.interviewer}/>}
+            {mode === EDIT && <Form interviewers={props.interviewers} onCancel={()=> back()} onSave={save} student={props.interview.student} interviewer={props.interview.interviewer.id}/>}
             {mode === ERROR_SAVE && <Error message="Could not save appointment." onClose={back} />}
             {mode === ERROR_DELETE && <Error message="Could not save appointment." onClose={back} />}
 
