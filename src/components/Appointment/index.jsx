@@ -54,13 +54,10 @@ const Appointment = function (props) {
             })
     }
 
-
-
-
     return (
         <article className="appointment">
 
-            <Header time={appointment.time} />
+            <Header time={time} />
             {mode === SHOW && <Show student={props.interview.student} interviewer={props.interview.interviewer.name} 
             onDelete={()=> transition(CONFIRMING)}
             onEdit={()=> transition(EDIT)} />}
