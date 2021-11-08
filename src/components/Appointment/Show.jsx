@@ -2,7 +2,6 @@ import React from "react";
 import "components/Appointment/styles.scss";
 
 const Show = function (props) {
-    console.log('show', props);
     const {student, interviewer} = props;
 
     return (

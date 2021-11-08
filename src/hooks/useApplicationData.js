@@ -10,8 +10,6 @@ export default function useApplicationData() {
     interviewers: [],
   });
 
-  console.log(state);
-
   const setDay = day => setState({ ...state, day });
 
 
